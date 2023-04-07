@@ -175,7 +175,7 @@ const pets = [
 
       const createCardTemplate = () => {/*генерирую карточку */
           let random = (Math.floor(Math.random() * 8));
-console.log(random)
+
           const choose = document.createElement("div");
           choose.classList.add("choose");
           choose.setAttribute('id', random+1);
@@ -192,9 +192,7 @@ console.log(random)
           let button = document.createElement('button');
           button.classList.add('choose-button');
           button.innerText = "Learn more";
-          
-console.log(pets)
-console.log(pets[random])
+        
 
           choose.appendChild(imgNew);
           choose.appendChild(pNew);
@@ -250,7 +248,7 @@ document.addEventListener("click", (e) => {
 
 function createPopup (e) {
   let id = e.id-1;
-
+console.log(e)
   let name = document.querySelector('.popup-title');
   let breed = document.querySelector('.popup-subtitle');
   let text = document.querySelector('.popup-par');
