@@ -182,6 +182,7 @@ const pets = [
           imgNew.classList.add('choose-img')
           imgNew.setAttribute('src', img);
 
+
           let pNew = document.createElement('p');
           pNew.classList.add('choose-par');
           pNew.innerText = pets[random].name;
