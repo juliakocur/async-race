@@ -4,7 +4,6 @@ const iconMenu = document.querySelector('.burger');
 const navMenu = document.querySelector('.menu-list');
 
 
-
     iconMenu.addEventListener("click", () => {
     document.body.classList.toggle('_lock');
     document.querySelector('.shadow').classList.toggle('_active');
@@ -754,6 +753,7 @@ let age = document.querySelector('.age');
 let inoculations = document.querySelector('.inoculations');
 let diseases = document.querySelector('.diseases');
 let parasites = document.querySelector('.parasites');
+
 
 
 name.innerText = pets[id].name;
