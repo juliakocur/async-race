@@ -1279,6 +1279,12 @@ ul {
 ul {
     display: flex;
     flex-direction: column;
+    gap: 40px;
+}
+
+.ul-nav {
+    display: flex;
+    flex-direction: column;
     margin-top: 248px;
     gap: 40px;
 }
