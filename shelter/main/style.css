@@ -166,7 +166,7 @@ ul {
 #not-only {
     margin-top: -180px;
     padding-top: 180px;
-    background-image: url(./assets/background.png);
+    background-image: url(./pict/background.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -641,12 +641,12 @@ h1 {
     width: 30px;
     height: 23px;
     margin-left: 15px;
-    background-image: url(./assets/credit-card.svg);
+    background-image: url(./pict/credit-card.svg);
 }
 
 footer {
     height: 350px;
-    background-image: url(./assets/background.png);
+    background-image: url(./pict/background.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -753,21 +753,21 @@ footer {
     width: 40px;
     height: 26px;
     margin-right: 20px;
-    background-image: url(./assets/mail.svg);
+    background-image: url(./pict/mail.svg);
 }
 
 .footer-icon-phone {
     width: 40px;
     height: 32px;
     margin-right: 20px;
-    background-image: url(./assets/phone.svg);
+    background-image: url(./pict/phone.svg);
 }
 
 .footer-icon-pin {
     width: 22px;
     height: 32px;
     margin-right: 20px;
-    background-image: url(./assets/pin.svg);
+    background-image: url(./pict/pin.svg);
 }
 
 
