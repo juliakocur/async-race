@@ -158,7 +158,7 @@ ul {
 }
 
 .menu-item:hover {
-  transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
     color: #FFFFFF;
     
 }
@@ -306,9 +306,7 @@ h1 {
     max-width: 1200px;
     height: 435px;
     margin-bottom: 60px;
-
     display: flex;
-   
 }
 
 
@@ -346,10 +344,10 @@ h1 {
 }
 
 .left-arrow:hover {
-background: #FDDCC4;
-border: 2px solid #FDDCC4;
-border-radius: 100px;
-transition: all 0.3s ease-in-out;
+    background: #FDDCC4;
+    border: 2px solid #FDDCC4;
+    border-radius: 100px;
+    transition: all 0.3s ease-in-out;
 }
 
 .right-arrow img {
@@ -384,12 +382,25 @@ transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 
+.pets-wrappier {
+    width: 1096px;
+    height: 435px;
+    overflow: hidden;/*ограничиваю область видимости*/
+}
+
 .pets-slide {
-    width: 990px;
     height: 435px;
     margin: 0 53px;
     display: flex;
-    justify-content: space-between;
+    gap: 90px;
+}
+
+
+
+.carousel {
+  display: flex;
+  position: relative;
+  left: -1096px;
 }
 
 .choose {
@@ -407,9 +418,9 @@ transition: all 0.3s ease-in-out;
 }
 
 .choose:hover .choose-button {
-background: #FDDCC4;
-border: #FDDCC4;
-transition: all 0.3s ease-in-out;
+    background: #FDDCC4;
+    border: #FDDCC4;
+    transition: all 0.3s ease-in-out;
 }
 
 .choose-button {
@@ -450,6 +461,26 @@ transition: all 0.3s ease-in-out;
     line-height: 23px;
     letter-spacing: 0.06em;
     color: #545454;
+}
+
+@keyframes move-right {
+    from {left: -1096px;}
+    to {left: -2192px};
+}
+
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 2s;
+}
+
+@keyframes move-left {
+    from {left: -1096px;}
+    to {left: 0px};
+}
+
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 2s;
 }
 
 #help {
@@ -523,8 +554,6 @@ transition: all 0.3s ease-in-out;
     max-width: 915px;
     height: 282px;
     padding: 80px 142px 100px 142px;
-    
-
     display: flex;
 }
 
@@ -1002,7 +1031,6 @@ html,body {
     height: 435px;
 }
 
-
 .pets-wrappier {
     width: 604px;
 }
@@ -1047,7 +1075,7 @@ html,body {
 }
 
         
-      
+        
 #help {
     height: 779px;
 }
@@ -1258,11 +1286,9 @@ ul {
 .shadow._active {
     height: 100%;
     opacity: 1;
-
     transition: opacity 0.5s ease-out;
     margin: -30px -20px -10px -20px;
 }
-
 
 
 .menu-item-white {
@@ -1274,7 +1300,6 @@ ul {
     font-size: 32px;
     line-height: 160%;
 }
-
 
       
 #not-only {
@@ -1406,7 +1431,6 @@ h1 {
     flex-direction: column;
 }
         
-
 .pets-wrappier {
     width: 270px;
     height: 455px;
@@ -1424,7 +1448,6 @@ h1 {
 }
 
 
-
 .left-arrow {
     margin: 0 0 0 43px;
     order: 2;
@@ -1434,7 +1457,6 @@ h1 {
     margin: -52px 0 0 175px;
     order: 3;
 }
-
 
 
 .choose:first-child{
@@ -1468,7 +1490,6 @@ h1 {
 .transition-left {
     animation-name: move-left;
     animation-duration: 1s;
-
 }
 
 
@@ -1649,7 +1670,6 @@ footer {
     margin-bottom: 40px;
 }
 
-
 .popup-content {
     width: 240px;
     min-height: 340px;
@@ -1703,4 +1723,5 @@ max-height: none;
 .popup-close {
 margin-left: 235px;
 }
+
 }  

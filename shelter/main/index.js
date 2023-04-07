@@ -1,10 +1,7 @@
-
 /*-------------------------burger-----------------------------*/
-
 
 const iconMenu = document.querySelector('.burger');
 const navMenu = document.querySelector('.menu-list');
-
 
 
 iconMenu.addEventListener("click", () => {
@@ -270,7 +267,6 @@ console.log(e)
   parasites.innerText = pets[id].parasites;
 }
 
-
 CAROUSEL.addEventListener ("click", (e) => {
  if (e.target.closest('.choose')) {
   openPopup();
@@ -280,4 +276,10 @@ CAROUSEL.addEventListener ("click", (e) => {
 
 /*-------------------------------------------------------------*/
 
+
+
+
+
+
+ 
 
