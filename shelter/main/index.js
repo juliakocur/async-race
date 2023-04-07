@@ -32,7 +32,7 @@ const pets = [
     {
       id: 1,
       name: "Jennifer",
-      img: "assets/pets-jennifer.png",
+      img: "pict/pets-jennifer.png",
       type: "Dog",
       breed: "Dog - Labrador",
       description: "Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.",
@@ -44,7 +44,7 @@ const pets = [
     {
       id: 2,
       name: "Sophia",
-      img:  "assets/kat.png",
+      img:  "pict/kat.png",
       type: "Dog",
       breed: "Dog - Shih tzu",
       description: "Sophia here and I'm looking for my forever home to live out the best years of my life. I am full of energy. Everyday I'm learning new things, like how to walk on a leash, go potty outside, bark and play with toys and I still need some practice.",
@@ -56,7 +56,7 @@ const pets = [
     {
       id: 3,
       name: "Woody",
-      img: "assets/pets-woody.png",
+      img: "pict/pets-woody.png",
       type: "Dog",
       breed: "Dog - Golden Retriever",
       description: "Woody is a handsome 3 1/2 year old boy. Woody does know basic commands and is a smart pup. Since he is on the stronger side, he will learn a lot from your training. Woody will be happier when he finds a new family that can spend a lot of time with him.",
@@ -68,7 +68,7 @@ const pets = [
     {
       id: 4,
       name: "Scarlett",
-      img: "assets/sca.png",
+      img: "pict/sca.png",
       type: "Dog",
       breed: "Dog - Jack Russell Terrier",
       description: "Scarlett is a happy, playful girl who will make you laugh and smile. She forms a bond quickly and will make a loyal companion and a wonderful family dog or a good companion for a single individual too since she likes to hang out and be with her human.",
@@ -80,7 +80,7 @@ const pets = [
     {
       id: 5,
       name: "Katrine",
-      img: "assets/pets-katrine.png",
+      img: "pict/pets-katrine.png",
       type: "Cat",
       breed: "Cat - British Shorthair",
       description: "Katrine is a beautiful girl. She is as soft as the finest velvet with a thick lush fur. Will love you until the last breath she takes as long as you are the one. She is picky about her affection. She loves cuddles and to stretch into your hands for a deeper relaxations.",
@@ -92,7 +92,7 @@ const pets = [
     {
       id: 6,
       name: "Timmy",
-      img: "assets/pets-timmy.png" ,
+      img: "pict/pets-timmy.png" ,
       type: "Cat",
       breed: "Cat - British Shorthair",
       description: "Timmy is an adorable grey british shorthair male. He loves to play and snuggle. He is neutered and up to date on age appropriate vaccinations. He can be chatty and enjoys being held. Timmy has a lot to say and wants a person to share his thoughts with.",
@@ -104,7 +104,7 @@ const pets = [
     {
       id: 7,
       name: "Freddie",
-      img: "assets/fre.png",
+      img: "pict/fre.png",
       type: "Cat",
       breed: "Cat - British Shorthair",
       description: ["none"],
@@ -116,7 +116,7 @@ const pets = [
     {
       id: 8,
       name: "Charly",
-      img: "assets/pets-charly.png",
+      img: "pict/pets-charly.png",
       type: "Dog",
       breed: "Dog - Jack Russell Terrier",
       description: "This cute boy, Charly, is three years old and he likes adults and kids. He isn’t fond of many other dogs, so he might do best in a single dog home. Charly has lots of energy, and loves to run and play. We think a fenced yard would make him very happy.",
