@@ -1,5 +1,6 @@
 [Link](https://youtu.be/BRDVz_4gTIU)
 
+
 Hello! My name is Julia and in this video I’ll talk about myself, a little about my experience and why I decided to study programming.
 
 I was born in Belarus. I studied at the Minsk Institute of Management at the Faculty of Finance and Credit, and after six long years of distance learning, I received a degree in economics.
