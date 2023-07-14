@@ -1,0 +1,124 @@
+/*body {
+    background-color: aquamarine;
+    background-image: url('./assets/rs.svg');
+}
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(41, 38, 38);
+    font-size: 16px;
+    color: white;
+}
+
+h1,
+h3 {
+    margin-bottom: 10px;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.header,
+.main,
+.footer {
+    margin: 15px;
+}
+
+input,
+button {
+    margin: 5px;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+}
+
+input {
+    outline: none;
+}
+
+button {
+    box-shadow: 0 5px 10px 0px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 1px 5px 0px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.garage,
+.winners {
+    background-color:rgba(52, 198, 235, 0.993);
+}
+
+.race,
+.reset,
+.prev,
+.next {
+    background-color:rgba(52, 235, 150, 0.5);
+}
+
+.create,
+.update {
+    position: absolute;
+    left: 250px;
+}
+
+.create,
+.update,
+.generate {
+    background-color:rgba(159, 211, 224, 0.7);
+}
+
+input {
+    background-color: rgb(191, 223, 231);
+}
+
+.set-color {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    left: 175px;
+    top: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-color {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    left: 175px;
+    top: 82px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-color,
+.input-color2 {
+    width: 50px;
+    height: 35px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.main-garage {
+    margin: 25px 5px 5px 5px;
+}
