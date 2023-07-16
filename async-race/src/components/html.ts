@@ -37,9 +37,20 @@ export function createHTML() {
   mainGarage.appendChild(pageNumber);
   pageNumber.innerHTML = "Page #1";
 
-  const footer = document.createElement("footer");
-  footer.classList.add("footer");
-  document.body.appendChild(footer);
+  const mainWinners = document.createElement("section");
+  mainWinners.classList.add("main-winners");
+  mainWinners.classList.add("none");
+  main.appendChild(mainWinners);
+
+  const winnersCount = document.createElement("h1");
+  winnersCount.classList.add("winners-count");
+  mainWinners.appendChild(winnersCount);
+  winnersCount.innerHTML = "Winners (1)";
+
+  const pageNumberWin = document.createElement("h3");
+  pageNumberWin.classList.add("page-number-win");
+  mainWinners.appendChild(pageNumberWin);
+  pageNumberWin.innerHTML = "Page #1";
 }
 
 export function createColorGenerator() {

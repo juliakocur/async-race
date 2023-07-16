@@ -32,6 +32,33 @@ h3 {
     width: 100%;
 }
 
+.none {
+    display: none;
+}
+
+.footer-links {
+    position: absolute;
+    right: 40px;
+}
+
+.car {
+    display: flex;
+    align-items: center;
+}
+
+.flag {
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    right: 10%;
+}
+
+.rs,
+.git {
+    height: 30px;
+    margin: 5px;
+}
+
 .header,
 .main,
 .footer {
