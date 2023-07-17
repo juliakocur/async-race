@@ -2,7 +2,10 @@ import "./styles.css";
 
 const { createHTML } = require("./components/html");
 const { createColorGenerator } = require("./components/html");
+const { carImg } = require("./view/svgCar");
+const { addWinner } = require("./view/buttonWinner");
 const { createFooter } = require("./components/footer");
+const { showWinners } = require("./view/winners");
 const { renderCar } = require("./view/svgCar");
 const { Button } = require("./components/button");
 const { Input } = require("./components/input");
@@ -16,10 +19,15 @@ document.body.innerHTML = `
 
 createHTML();
 createFooter();
-renderCar(1, "tesla", "#fede00");
+renderCar(1, "tesla", "#e6e6fa");
+renderCar(2, "BMW", "#fede00");
+renderCar(3, "Mersedes", "#6c779f");
+renderCar(4, "Ford", "#ef3c40");
+showWinners(1, "tesla", "#fede00", 10);
 
 setTimeout(function add() {
   createColorGenerator();
+  addWinner();
 }, 0);
 
 const header = <HTMLElement>document.querySelector("header");
@@ -27,9 +35,6 @@ const footer = <HTMLElement>document.querySelector("footer");
 const mainCreate = <HTMLElement>document.querySelector(".main-create");
 const mainUpdate = <HTMLElement>document.querySelector(".main-update");
 const mainGenerate = <HTMLElement>document.querySelector(".main-generate");
-const mainWinners = <HTMLElement>document.querySelector(".main-winners");
-const mainCreator = <HTMLElement>document.querySelector(".main-creator");
-const mainGarage = <HTMLElement>document.querySelector(".main-garage");
 
 new Input("input", "model", mainCreate, "text").createInput();
 new Input("input", "rename", mainUpdate, "text").createInput();
@@ -66,6 +71,11 @@ const getCars = async () => {
 getCars();
 */
 
+const mainWinners = <HTMLElement>document.querySelector(".main-winners");
+const mainCreator = <HTMLElement>document.querySelector(".main-creator");
+const mainGarage = <HTMLElement>document.querySelector(".main-garage");
+const inputColor2 = <HTMLElement>document.querySelector(".input-color2");
+
 header.addEventListener("click", function pageOpen(e: Event) {
   const target = e.target as HTMLElement;
   if (target.className === "garage") {
@@ -80,4 +90,48 @@ header.addEventListener("click", function pageOpen(e: Event) {
     mainGarage.classList.add("none");
     footer.classList.add("none");
   }
+});
+
+let name: string[] = [];
+let classN;
+mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
+  const target = e.target as HTMLElement;
+  if (target.className === "select") {
+    const inputChangeColor = <HTMLInputElement>(
+      document.querySelector(".input-color2")
+    );
+    name = [];
+    const input = <HTMLInputElement>document.querySelector(".rename");
+    classN = target.closest(".car-container");
+    const nameId = classN?.id.slice(2) as string; // id
+    name.push(nameId);
+    const carClassName = <HTMLInputElement>(
+      document.querySelector(`.name-${nameId}`)
+    );
+    const carName = carClassName.innerHTML;
+    input.value = carName;
+  }
+});
+
+const update = <HTMLElement>document.querySelector(".update");
+
+update.addEventListener("click", function changesColor() {
+  if (name === null || name === undefined || name.length === 0) return;
+  const nameId = name.join();
+  console.log(nameId);
+  const inputChangeColor = <HTMLInputElement>(
+    document.querySelector(".input-color2")
+  );
+  name = [];
+  const input = <HTMLInputElement>document.querySelector(".rename");
+  const carClassName = <HTMLInputElement>(
+    document.querySelector(`.name-${nameId}`)
+  );
+  const carName = carClassName.innerHTML;
+  carClassName.innerHTML = input.value;
+  input.value = "";
+  const carImage = <HTMLElement>document.querySelector(`.img-${nameId}`);
+  const inputValue = inputChangeColor.value;
+  inputChangeColor.value = "";
+  carImage.innerHTML = carImg(inputValue);
 });

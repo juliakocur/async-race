@@ -52,6 +52,7 @@ export function renderCar(id: number, name: string, color: string) {
   const mainGarage = <HTMLElement>document.querySelector(".main-garage");
   const carContainer = document.createElement("div");
   carContainer.classList.add("car-container");
+  carContainer.id = `c-${id}`;
   mainGarage.appendChild(carContainer);
 
   new Button("button", "select", carContainer, "SELECT").createButton();
@@ -59,6 +60,7 @@ export function renderCar(id: number, name: string, color: string) {
 
   const carName = document.createElement("span");
   carName.classList.add("car-name");
+  carName.classList.add(`name-${id}`);
   carContainer.appendChild(carName);
   carName.innerHTML = name;
 
@@ -67,8 +69,20 @@ export function renderCar(id: number, name: string, color: string) {
   car.id = `car-${id}`;
   carContainer.appendChild(car);
 
+  const carStart = document.createElement("button");
+  carStart.classList.add("car-start");
+  car.appendChild(carStart);
+  carStart.innerHTML = "A";
+
+  const carStop = document.createElement("button");
+  carStop.classList.add("car-stop");
+  car.appendChild(carStop);
+  carStop.innerHTML = "B";
+  carStop.classList.add("grey");
+
   const carImage = document.createElement("div");
   carImage.classList.add("car-img");
+  carImage.classList.add(`img-${id}`);
   carImage.innerHTML = carImg(color);
   car.appendChild(carImage);
 

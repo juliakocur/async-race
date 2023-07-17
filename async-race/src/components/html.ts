@@ -51,6 +51,16 @@ export function createHTML() {
   pageNumberWin.classList.add("page-number-win");
   mainWinners.appendChild(pageNumberWin);
   pageNumberWin.innerHTML = "Page #1";
+
+  const winnerPanel = document.createElement("div");
+  winnerPanel.classList.add("winner-panel");
+  mainWinners.appendChild(winnerPanel);
+  winnerPanel.innerHTML =
+    "Number&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCar&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspWins&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBest&nbsptime(sec)";
+
+  const winnerContainer = document.createElement("div");
+  winnerContainer.classList.add("winner-container");
+  mainWinners.appendChild(winnerContainer);
 }
 
 export function createColorGenerator() {
