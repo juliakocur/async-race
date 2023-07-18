@@ -74,7 +74,7 @@ getCars();
 const mainWinners = <HTMLElement>document.querySelector(".main-winners");
 const mainCreator = <HTMLElement>document.querySelector(".main-creator");
 const mainGarage = <HTMLElement>document.querySelector(".main-garage");
-const inputColor2 = <HTMLElement>document.querySelector(".input-color2");
+const h1 = <HTMLElement>document.querySelector(".cars-count");
 
 header.addEventListener("click", function pageOpen(e: Event) {
   const target = e.target as HTMLElement;
@@ -92,14 +92,12 @@ header.addEventListener("click", function pageOpen(e: Event) {
   }
 });
 
+let idCount = 4;
 let name: string[] = [];
 let classN;
 mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   const target = e.target as HTMLElement;
   if (target.className === "select") {
-    const inputChangeColor = <HTMLInputElement>(
-      document.querySelector(".input-color2")
-    );
     name = [];
     const input = <HTMLInputElement>document.querySelector(".rename");
     classN = target.closest(".car-container");
@@ -111,10 +109,15 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
     const carName = carClassName.innerHTML;
     input.value = carName;
   }
+  if (target.className === "remove") {
+    const car = target.closest(".car-container");
+    car?.remove();
+    idCount -= 1;
+    h1.innerHTML = `Garage (${idCount})`;
+  }
 });
 
 const update = <HTMLElement>document.querySelector(".update");
-
 update.addEventListener("click", function changesColor() {
   if (name === null || name === undefined || name.length === 0) return;
   const nameId = name.join();
@@ -127,11 +130,23 @@ update.addEventListener("click", function changesColor() {
   const carClassName = <HTMLInputElement>(
     document.querySelector(`.name-${nameId}`)
   );
-  const carName = carClassName.innerHTML;
   carClassName.innerHTML = input.value;
   input.value = "";
   const carImage = <HTMLElement>document.querySelector(`.img-${nameId}`);
   const inputValue = inputChangeColor.value;
   inputChangeColor.value = "";
   carImage.innerHTML = carImg(inputValue);
+});
+
+const create = <HTMLElement>document.querySelector(".create");
+create.addEventListener("click", function createCar() {
+  const input = <HTMLInputElement>document.querySelector(".model");
+  const nameInp = input.value;
+  console.log(nameInp);
+  const inputColor = <HTMLInputElement>document.querySelector(".input-color");
+  const colorInp = inputColor.value;
+  console.log(colorInp);
+  idCount += 1;
+  h1.innerHTML = `Garage (${idCount})`;
+  renderCar(idCount, nameInp, colorInp);
 });
