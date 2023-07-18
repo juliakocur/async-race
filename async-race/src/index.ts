@@ -9,6 +9,10 @@ const { showWinners } = require("./view/winners");
 const { renderCar } = require("./view/svgCar");
 const { Button } = require("./components/button");
 const { Input } = require("./components/input");
+const { getCars } = require("./api");
+const { getCar } = require("./api");
+const { createCarApi } = require("./api");
+const { updateCarApi } = require("./api");
 
 // const img = require("./assets/github.png");
 // <img src=${img} alt="img">
@@ -49,28 +53,6 @@ new Button("button", "race", mainGenerate, "RACE").createButton();
 new Button("button", "reset", mainGenerate, "RESET").createButton();
 new Button("button", "generate", mainGenerate, "GENERATE CARS").createButton();
 
-/*
-const baseUrl = "http://localhost:3000";
-const path = {
-  garage: "/garage",
-  winners: "/winners",
-};
-
-([{key:'_page', value: 0}, {key: '_limit', value: 1}]);
-export const generateQueryString = (queryParams: []) => queryParams.length
-  ? `?${queryParams.map(el => `${el.key}=${el.value}`).join('&')}`
-  : '';
-
-const getCars = async () => {
-  const response = await fetch(`${baseUrl}${path.garage}`);
-  const data = await response.json();
-  // text если не complication
-  console.log(data);
-};
-
-getCars();
-*/
-
 const mainWinners = <HTMLElement>document.querySelector(".main-winners");
 const mainCreator = <HTMLElement>document.querySelector(".main-creator");
 const mainGarage = <HTMLElement>document.querySelector(".main-garage");
@@ -92,6 +74,7 @@ header.addEventListener("click", function pageOpen(e: Event) {
   }
 });
 
+let selectCar;
 let idCount = 4;
 let name: string[] = [];
 let classN;
@@ -121,21 +104,27 @@ const update = <HTMLElement>document.querySelector(".update");
 update.addEventListener("click", function changesColor() {
   if (name === null || name === undefined || name.length === 0) return;
   const nameId = name.join();
-  console.log(nameId);
+  console.log(+nameId);
   const inputChangeColor = <HTMLInputElement>(
     document.querySelector(".input-color2")
   );
-  name = [];
   const input = <HTMLInputElement>document.querySelector(".rename");
   const carClassName = <HTMLInputElement>(
     document.querySelector(`.name-${nameId}`)
   );
   carClassName.innerHTML = input.value;
-  input.value = "";
+
   const carImage = <HTMLElement>document.querySelector(`.img-${nameId}`);
   const inputValue = inputChangeColor.value;
-  inputChangeColor.value = "";
   carImage.innerHTML = carImg(inputValue);
+
+  selectCar = getCar(+nameId);
+  selectCar.name = input.value;
+  selectCar.color = inputChangeColor.value;
+  inputChangeColor.value = "";
+  input.value = "";
+  updateCarApi(+nameId, selectCar);
+  name = [];
 });
 
 const create = <HTMLElement>document.querySelector(".create");
@@ -149,4 +138,12 @@ create.addEventListener("click", function createCar() {
   idCount += 1;
   h1.innerHTML = `Garage (${idCount})`;
   renderCar(idCount, nameInp, colorInp);
+  const carApi = {
+    name: nameInp,
+    color: colorInp,
+    id: idCount,
+  };
+  createCarApi(carApi);
 });
+
+getCars();

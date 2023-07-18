@@ -82,6 +82,7 @@ h3 {
 
 .car-img {
     margin-left: 20px;
+    margin-bottom: -10px;
 }
 
 .grey {
@@ -208,6 +209,7 @@ input {
     .car-img svg {
         height: 35px;
         margin-left: -20px;
+        margin-bottom: -8px;
     }
     
     .flag {
