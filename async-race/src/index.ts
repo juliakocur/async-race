@@ -13,7 +13,9 @@ const { getCars } = require("./api");
 const { getCar } = require("./api");
 const { createCarApi } = require("./api");
 const { updateCarApi } = require("./api");
-
+const { deleteCarApi } = require("./api");
+// const { getCarsForHTML } = require("./api");
+// const { count } = require("./api");
 // const img = require("./assets/github.png");
 // <img src=${img} alt="img">
 /*
@@ -23,17 +25,12 @@ document.body.innerHTML = `
 
 createHTML();
 createFooter();
-renderCar(1, "tesla", "#e6e6fa");
-renderCar(2, "BMW", "#fede00");
-renderCar(3, "Mersedes", "#6c779f");
-renderCar(4, "Ford", "#ef3c40");
-showWinners(1, "tesla", "#fede00", 10);
-
+showWinners(1, "Mersedes", "#6c779f", 10);
 setTimeout(function add() {
   createColorGenerator();
   addWinner();
 }, 0);
-
+let count: number;
 const header = <HTMLElement>document.querySelector("header");
 const footer = <HTMLElement>document.querySelector("footer");
 const mainCreate = <HTMLElement>document.querySelector(".main-create");
@@ -75,7 +72,6 @@ header.addEventListener("click", function pageOpen(e: Event) {
 });
 
 let selectCar;
-let idCount = 4;
 let name: string[] = [];
 let classN;
 mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
@@ -94,9 +90,13 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   }
   if (target.className === "remove") {
     const car = target.closest(".car-container");
+    const nameRemId = car?.id.slice(2) as string; // id
     car?.remove();
-    idCount -= 1;
-    h1.innerHTML = `Garage (${idCount})`;
+    count -= 1;
+    h1.innerHTML = `Garage (${count})`;
+
+    selectCar = getCar(+nameRemId);
+    deleteCarApi(+nameRemId);
   }
 });
 
@@ -104,7 +104,6 @@ const update = <HTMLElement>document.querySelector(".update");
 update.addEventListener("click", function changesColor() {
   if (name === null || name === undefined || name.length === 0) return;
   const nameId = name.join();
-  console.log(+nameId);
   const inputChangeColor = <HTMLInputElement>(
     document.querySelector(".input-color2")
   );
@@ -131,19 +130,55 @@ const create = <HTMLElement>document.querySelector(".create");
 create.addEventListener("click", function createCar() {
   const input = <HTMLInputElement>document.querySelector(".model");
   const nameInp = input.value;
-  console.log(nameInp);
   const inputColor = <HTMLInputElement>document.querySelector(".input-color");
   const colorInp = inputColor.value;
-  console.log(colorInp);
-  idCount += 1;
-  h1.innerHTML = `Garage (${idCount})`;
-  renderCar(idCount, nameInp, colorInp);
+  count += 1;
+  h1.innerHTML = `Garage (${count})`;
+  renderCar(count, nameInp, colorInp);
   const carApi = {
     name: nameInp,
     color: colorInp,
-    id: idCount,
+    id: count,
   };
   createCarApi(carApi);
 });
 
 getCars();
+/*
+// export let count: number;
+export const getCarsForHTML = async () => {
+  const baseUrl = "http://localhost:3000";
+  const path = {
+    garage: "/garage",
+  };
+  const response = await fetch(`${baseUrl}${path.garage}`);
+  const data = await response.json();
+  // text если не complication
+  count = data.length;
+  console.log(count);
+  h1.innerHTML = `Garage (${count})`;
+  data.forEach((item: string, index: number) => {
+    renderCar(data[index].id, data[index].name, data[index].color);
+  });
+};
+
+getCarsForHTML();
+*/
+
+const setCount = (value: number) => {
+  count = value;
+};
+
+export const getCarsForHTML = async () => {
+  const baseUrl = "http://localhost:3000";
+  const garage = `${baseUrl}/garage`;
+  const response = await fetch(`${garage}`);
+  const data = await response.json();
+  setCount(data.length);
+  h1.innerHTML = `Garage (${count})`;
+  data.forEach((item: string, index: number) => {
+    renderCar(data[index].id, data[index].name, data[index].color);
+  });
+};
+
+getCarsForHTML();

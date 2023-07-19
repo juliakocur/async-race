@@ -1,3 +1,5 @@
+const { renderCar } = require("./view/svgCar");
+
 const baseUrl = "http://localhost:3000";
 const path = {
   garage: "/garage",
@@ -24,8 +26,6 @@ export const generateQueryString = (queryParams: QueryParams[]) =>
 export const getCars = async () => {
   const response = await fetch(`${baseUrl}${path.garage}`);
   const data = await response.json();
-  // text если не complication
-  console.log(data);
 };
 
 type CarForApi = {
@@ -59,6 +59,14 @@ export const updateCarApi = async (id: number, car: CarForApi) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(car),
+  });
+  const carElement = await response.json();
+  return carElement;
+};
+
+export const deleteCarApi = async (id: number) => {
+  const response = await fetch(`${garage}/${id}`, {
+    method: "DELETE",
   });
   const carElement = await response.json();
   return carElement;

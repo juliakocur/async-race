@@ -30,7 +30,7 @@ export function createHTML() {
   const carsCount = document.createElement("h1");
   carsCount.classList.add("cars-count");
   mainGarage.appendChild(carsCount);
-  carsCount.innerHTML = "Garage (4)";
+  // carsCount.innerHTML = "Garage (4)";
 
   const pageNumber = document.createElement("h3");
   pageNumber.classList.add("page-number");
