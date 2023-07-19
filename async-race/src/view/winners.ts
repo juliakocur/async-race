@@ -4,12 +4,12 @@ export function showWinners(
   id: number,
   name: string,
   color: string,
+  wins: number,
   time: number,
 ) {
   const winnerContainer = <HTMLElement>(
     document.querySelector(".winner-container")
   );
-  const count = 1;
 
   const winner = document.createElement("div");
   winner.classList.add("winner");
@@ -22,7 +22,7 @@ export function showWinners(
   const carName = document.createElement("div");
   carName.innerHTML = `${name}`;
   const winsCount = document.createElement("div");
-  winsCount.innerHTML = `${count}`;
+  winsCount.innerHTML = `${wins}`;
   const bestTime = document.createElement("div");
   bestTime.innerHTML = `${time}`;
 

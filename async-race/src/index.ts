@@ -25,7 +25,7 @@ document.body.innerHTML = `
 
 createHTML();
 createFooter();
-showWinners(1, "Mersedes", "#6c779f", 10);
+// showWinners(1, "Mersedes", "#6c779f", 1, 10);
 setTimeout(function add() {
   createColorGenerator();
   addWinner();
@@ -54,6 +54,14 @@ const mainWinners = <HTMLElement>document.querySelector(".main-winners");
 const mainCreator = <HTMLElement>document.querySelector(".main-creator");
 const mainGarage = <HTMLElement>document.querySelector(".main-garage");
 const h1 = <HTMLElement>document.querySelector(".cars-count");
+const update = <HTMLElement>document.querySelector(".update");
+const create = <HTMLElement>document.querySelector(".create");
+let selectCar;
+let name: string[] = [];
+let classN;
+const baseUrl = "http://localhost:3000";
+const garage = `${baseUrl}/garage`;
+const winners = `${baseUrl}/winners`;
 
 header.addEventListener("click", function pageOpen(e: Event) {
   const target = e.target as HTMLElement;
@@ -71,9 +79,6 @@ header.addEventListener("click", function pageOpen(e: Event) {
   }
 });
 
-let selectCar;
-let name: string[] = [];
-let classN;
 mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   const target = e.target as HTMLElement;
   if (target.className === "select") {
@@ -100,7 +105,6 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   }
 });
 
-const update = <HTMLElement>document.querySelector(".update");
 update.addEventListener("click", function changesColor() {
   if (name === null || name === undefined || name.length === 0) return;
   const nameId = name.join();
@@ -126,7 +130,6 @@ update.addEventListener("click", function changesColor() {
   name = [];
 });
 
-const create = <HTMLElement>document.querySelector(".create");
 create.addEventListener("click", function createCar() {
   const input = <HTMLInputElement>document.querySelector(".model");
   const nameInp = input.value;
@@ -144,34 +147,12 @@ create.addEventListener("click", function createCar() {
 });
 
 getCars();
-/*
-// export let count: number;
-export const getCarsForHTML = async () => {
-  const baseUrl = "http://localhost:3000";
-  const path = {
-    garage: "/garage",
-  };
-  const response = await fetch(`${baseUrl}${path.garage}`);
-  const data = await response.json();
-  // text если не complication
-  count = data.length;
-  console.log(count);
-  h1.innerHTML = `Garage (${count})`;
-  data.forEach((item: string, index: number) => {
-    renderCar(data[index].id, data[index].name, data[index].color);
-  });
-};
-
-getCarsForHTML();
-*/
 
 const setCount = (value: number) => {
   count = value;
 };
 
 export const getCarsForHTML = async () => {
-  const baseUrl = "http://localhost:3000";
-  const garage = `${baseUrl}/garage`;
   const response = await fetch(`${garage}`);
   const data = await response.json();
   setCount(data.length);
@@ -182,3 +163,20 @@ export const getCarsForHTML = async () => {
 };
 
 getCarsForHTML();
+
+const getWinners = async () => {
+  const response = await fetch(`${winners}`);
+  const data = await response.json();
+  console.log(data);
+  data.forEach((item: string, index: number) => {
+    showWinners(
+      data[index].id,
+      "Tesla",
+      "#e6e6fa",
+      data[index].wins,
+      data[index].time,
+    );
+  });
+};
+
+getWinners();

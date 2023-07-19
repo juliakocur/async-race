@@ -7,6 +7,7 @@ const path = {
 };
 
 const garage = `${baseUrl}/garage`;
+const winners = `${baseUrl}/winners`;
 
 type QueryParams = {
   key?: string;
