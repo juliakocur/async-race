@@ -71,11 +71,13 @@ export function renderCar(id: number, name: string, color: string) {
 
   const carStart = document.createElement("button");
   carStart.classList.add("car-start");
+  carStart.id = `start-${id}`;
   car.appendChild(carStart);
   carStart.innerHTML = "A";
 
   const carStop = document.createElement("button");
   carStop.classList.add("car-stop");
+  carStop.id = `stop-${id}`;
   car.appendChild(carStop);
   carStop.innerHTML = "B";
   carStop.classList.add("grey");

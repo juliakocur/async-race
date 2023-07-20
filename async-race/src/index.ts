@@ -14,6 +14,9 @@ const { getCar } = require("./api");
 const { createCarApi } = require("./api");
 const { updateCarApi } = require("./api");
 const { deleteCarApi } = require("./api");
+const { engineStart } = require("./api");
+const { engineStop } = require("./api");
+const { driveMode } = require("./api");
 // const { getCarsForHTML } = require("./api");
 // const { count } = require("./api");
 // const img = require("./assets/github.png");
@@ -31,6 +34,7 @@ setTimeout(function add() {
   addWinner();
 }, 0);
 let count: number;
+let idNum: number;
 const header = <HTMLElement>document.querySelector("header");
 const footer = <HTMLElement>document.querySelector("footer");
 const mainCreate = <HTMLElement>document.querySelector(".main-create");
@@ -79,6 +83,43 @@ header.addEventListener("click", function pageOpen(e: Event) {
   }
 });
 
+const setId = (value: number) => {
+  idNum = value;
+};
+let isAnimation = false;
+function animate(startTime: number, duration: number) {
+  const carGo = <HTMLElement>document.querySelector(`.img-${idNum}`);
+  if (!isAnimation) return;
+  const start = performance.now();
+  const progress = (start - startTime) / duration;
+  carGo.style.transform = `translateX(${progress * 77}vw)`;
+  if (progress < 1) {
+    requestAnimationFrame(() => animate(startTime, duration));
+  }
+}
+async function go(target: HTMLElement) {
+  target.classList.add("grey");
+  const car = target.closest(".car-container");
+  const carId = car?.id.slice(2) as string; // id
+  const carGo = <HTMLElement>document.querySelector(`.img-${+carId}`);
+  setId(+carId);
+  const stopBut = <HTMLButtonElement>document.getElementById(`stop-${idNum}`);
+  stopBut.classList.remove("grey");
+  const { velocity, distance } = await engineStart(+carId);
+  const startTime = performance.now();
+  const duration = distance / velocity;
+  console.log(startTime, duration);
+  driveMode(+carId)
+    .then()
+    .catch((error: string) => {
+      isAnimation = false;
+      console.error(error);
+    });
+  isAnimation = true;
+  requestAnimationFrame(() => {
+    animate(startTime, duration);
+  });
+}
 mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   const target = e.target as HTMLElement;
   if (target.className === "select") {
@@ -99,9 +140,11 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
     car?.remove();
     count -= 1;
     h1.innerHTML = `Garage (${count})`;
-
     selectCar = getCar(+nameRemId);
     deleteCarApi(+nameRemId);
+  }
+  if (target.className === "car-start") {
+    go(target);
   }
 });
 
