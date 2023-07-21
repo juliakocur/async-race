@@ -7,33 +7,17 @@ const path = {
 };
 
 const garage = `${baseUrl}/garage`;
-const winners = `${baseUrl}/winners`;
 const engine = `${baseUrl}/engine`;
-
-/* type QueryParams = {
-  key?: string;
-  value?: number | string;
-};
-
-/*
-[
-  { key: "_page", value: 0 },
-  { key: "_limit", value: 1 },
-];
-export const generateQueryString = (queryParams: QueryParams[]) =>
-  queryParams.length
-    ? `?${queryParams.map((el) => `${el.key}=${el.value}`).join("&")}`
-    : ""; */
-
-export const getCars = async () => {
-  const response = await fetch(`${baseUrl}${path.garage}`);
-  const data = await response.json();
-};
 
 type CarForApi = {
   name: string;
   color: string;
   id?: number;
+};
+
+export const getCars = async () => {
+  const response = await fetch(`${baseUrl}${path.garage}`);
+  const data = await response.json();
 };
 
 export const createCarApi = async (car: CarForApi) => {
@@ -74,21 +58,12 @@ export const deleteCarApi = async (id: number) => {
   return carElement;
 };
 
-/*
-export const engineStart = async (id: number) => {
-  const response = await fetch(`${engine}?id=${id}&status=started`, {
-    method: "PATCH",
-  });
-  const engineState = await response.json();
-  return engineState;
-};
-*/
-export interface EngineStart {
+export interface EngineStartStop {
   velocity: number;
   distance: number;
 }
 
-export const engineStart = async (id: number): Promise<EngineStart> => {
+export const engineStart = async (id: number): Promise<EngineStartStop> => {
   const response = await fetch(`${engine}?id=${id}&status=started`, {
     method: "PATCH",
   });
@@ -96,7 +71,7 @@ export const engineStart = async (id: number): Promise<EngineStart> => {
   return engineState;
 };
 
-export const engineStop = async (id: number) => {
+export const engineStop = async (id: number): Promise<EngineStartStop> => {
   const response = await fetch(`${engine}?id=${id}&status=stopped`, {
     method: "PATCH",
   });
@@ -108,6 +83,10 @@ export const driveMode = async (id: number): Promise<boolean> => {
   const res = await fetch(`${engine}?id=${id}&status=drive`, {
     method: "PATCH",
   }).catch();
+  if (res.status === 500) {
+    const carGo = <HTMLElement>document.querySelector(`.img-${id}`);
+    carGo.classList.add("stop");
+  }
   if (res.status !== 200) {
     throw new Error("Engine error!");
   }

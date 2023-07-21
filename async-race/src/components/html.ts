@@ -30,12 +30,15 @@ export function createHTML() {
   const carsCount = document.createElement("h1");
   carsCount.classList.add("cars-count");
   mainGarage.appendChild(carsCount);
-  // carsCount.innerHTML = "Garage (4)";
 
   const pageNumber = document.createElement("h3");
   pageNumber.classList.add("page-number");
   mainGarage.appendChild(pageNumber);
   pageNumber.innerHTML = "Page #1";
+
+  const container = document.createElement("div");
+  container.classList.add("container");
+  mainGarage.appendChild(container);
 
   const mainWinners = document.createElement("section");
   mainWinners.classList.add("main-winners");
@@ -45,7 +48,6 @@ export function createHTML() {
   const winnersCount = document.createElement("h1");
   winnersCount.classList.add("winners-count");
   mainWinners.appendChild(winnersCount);
-  winnersCount.innerHTML = "Winners (1)";
 
   const pageNumberWin = document.createElement("h3");
   pageNumberWin.classList.add("page-number-win");

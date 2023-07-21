@@ -49,11 +49,12 @@ export const carImg = (color: string): string => `
 `;
 
 export function renderCar(id: number, name: string, color: string) {
-  const mainGarage = <HTMLElement>document.querySelector(".main-garage");
+  const container = <HTMLElement>document.querySelector(".container");
+
   const carContainer = document.createElement("div");
   carContainer.classList.add("car-container");
   carContainer.id = `c-${id}`;
-  mainGarage.appendChild(carContainer);
+  container.appendChild(carContainer);
 
   new Button("button", "select", carContainer, "SELECT").createButton();
   new Button("button", "remove", carContainer, "REMOVE").createButton();
