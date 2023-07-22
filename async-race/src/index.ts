@@ -9,6 +9,8 @@ const { showWinners } = require("./view/winners");
 const { renderCar } = require("./view/svgCar");
 const { Button } = require("./components/button");
 const { Input } = require("./components/input");
+const { getRandomColor } = require("./components/createCar");
+const { createCarName } = require("./components/createCar");
 const { getCars } = require("./api");
 const { getCar } = require("./api");
 const { createCarApi } = require("./api");
@@ -20,7 +22,6 @@ const { driveMode } = require("./api");
 
 createHTML();
 createFooter();
-// showWinners(1, "Mersedes", "#6c779f", 1, 10);
 setTimeout(function add() {
   createColorGenerator();
   addWinner();
@@ -55,7 +56,9 @@ const update = <HTMLElement>document.querySelector(".update");
 const create = <HTMLElement>document.querySelector(".create");
 const next = <HTMLButtonElement>document.querySelector(".next");
 const prev = <HTMLButtonElement>document.querySelector(".prev");
+const generate = <HTMLButtonElement>document.querySelector(".generate");
 const h3 = <HTMLElement>document.querySelector(".page-number");
+
 let selectCar;
 let name: string[] = [];
 let classN;
@@ -139,9 +142,7 @@ export const getCarsForHTML = async (page: number, limit?: number) => {
   const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
   const data = await response.json();
   const totalCount = Number(response.headers.get("X-Total-Count"));
-  console.log(count, totalCount, "кол машин");
   setCount(totalCount);
-  console.log(data);
   h1.innerHTML = `Garage (${count})`;
   data.forEach((item: string, index: number) => {
     renderCar(data[index].id, data[index].name, data[index].color);
@@ -175,7 +176,6 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
     );
     const par = <HTMLElement>document.querySelector(`.par-${nameId}`);
     const parColor = par.textContent;
-    console.log(parColor);
     inputChangeColor.value = `${parColor}`;
   }
   if (target.className === "remove") {
@@ -183,7 +183,6 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
     const nameRemId = car?.id.slice(2) as string;
     car?.remove();
     count -= 1;
-    console.log(count, "remove");
     h1.innerHTML = `Garage (${count})`;
     selectCar = getCar(+nameRemId);
     deleteCarApi(+nameRemId);
@@ -249,7 +248,6 @@ const createCarNextPage = () => {
 
 create.addEventListener("click", function createCar() {
   if (count % 7 === 0) {
-    console.log("hi");
     container.innerHTML = "";
     pageNum += 1;
     h3.innerHTML = `Page #${pageNum}`;
@@ -260,7 +258,6 @@ create.addEventListener("click", function createCar() {
   const inputColor = <HTMLInputElement>document.querySelector(".input-color");
   const colorInp = inputColor.value;
   count += 1;
-  console.log(count, "create 246");
   h1.innerHTML = `Garage (${count})`;
   renderCar(count, nameInp, colorInp);
   const carApi = {
@@ -272,7 +269,6 @@ create.addEventListener("click", function createCar() {
 });
 
 getCars();
-
 getCarsForHTML(1, 7);
 
 const getWinners = async () => {
@@ -298,7 +294,6 @@ next.addEventListener("click", function showNext() {
   h1.innerHTML = `Garage (${count})`;
   h3.innerHTML = `Page #${pageNum}`;
   getCarsForHTML(pageNum, 7);
-  console.log("next", count);
 });
 
 prev.addEventListener("click", function showPrev() {
@@ -307,5 +302,29 @@ prev.addEventListener("click", function showPrev() {
   container.innerHTML = "";
   h3.innerHTML = `Page #${pageNum}`;
   getCarsForHTML(pageNum, 7);
-  console.log("prev", count);
+});
+
+function createOneHandredCars() {
+  const wait = <HTMLElement>document.querySelector(".wait");
+  wait.classList.remove("none");
+  for (let i = 1; i <= 100; i += 1) {
+    const carApi = {
+      name: createCarName(),
+      color: getRandomColor(),
+      id: count + 1,
+    };
+    createCarApi(carApi);
+    count += 1;
+  }
+  container.innerHTML = "";
+  h3.innerHTML = `Page #${pageNum}`;
+  console.log(count);
+  getCarsForNext(pageNum, 7);
+  setTimeout(function remove() {
+    wait.classList.add("none");
+  }, 10000);
+}
+
+generate.addEventListener("click", function create100() {
+  createOneHandredCars();
 });
