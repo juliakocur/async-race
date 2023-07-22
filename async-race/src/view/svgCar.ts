@@ -89,6 +89,12 @@ export function renderCar(id: number, name: string, color: string) {
   carImage.innerHTML = carImg(color);
   car.appendChild(carImage);
 
+  const par = document.createElement("p");
+  par.classList.add("par");
+  par.classList.add(`par-${id}`);
+  par.innerHTML = color;
+  carContainer.appendChild(par);
+
   const flag = document.createElement("span");
   flag.classList.add("flag");
   flag.innerHTML = "🚩";

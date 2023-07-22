@@ -181,6 +181,11 @@ input {
     align-items: center;
 }
 
+.par {
+    position: absolute;
+    display: none;
+}
+
 .change-color {
     width: 100px;
     height: 50px;
