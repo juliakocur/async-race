@@ -1,4 +1,5 @@
 const { renderCar } = require("./view/svgCar");
+const { showWinners } = require("./view/winners");
 
 enum Endpoint {
   garage = "garage",
@@ -101,4 +102,21 @@ export const driveMode = async (id: number): Promise<boolean> => {
     throw new Error("Engine error!");
   }
   return true;
+};
+
+export const getWinners = async () => {
+  const winners = `${baseUrl}/winners`;
+  const h1Win = <HTMLElement>document.querySelector(".winners-count");
+  const response = await fetch(`${winners}`);
+  const data = await response.json();
+  h1Win.innerHTML = `Winners (${data.length})`;
+  data.forEach((item: string, index: number) => {
+    showWinners(
+      data[index].id,
+      "Tesla",
+      "#e6e6fa",
+      data[index].wins,
+      data[index].time,
+    );
+  });
 };
