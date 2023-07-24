@@ -1,8 +1,15 @@
+const { go } = require("../app");
+const { stopGo } = require("../app");
+const { carImg } = require("../view/svgCar");
+const { getCar } = require("../api");
+const { updateCarApi } = require("../api");
+
 const mainWinners = <HTMLElement>document.querySelector(".main-winners");
 const mainCreator = <HTMLElement>document.querySelector(".main-creator");
 const mainGarage = <HTMLElement>document.querySelector(".main-garage");
 const header = <HTMLElement>document.querySelector("header");
 const footer = <HTMLElement>document.querySelector("footer");
+
 header.addEventListener("click", function pageOpen(e: Event) {
   const target = e.target as HTMLElement;
   if (target.className === "garage") {
@@ -19,12 +26,6 @@ header.addEventListener("click", function pageOpen(e: Event) {
   }
 });
 
-const { go } = require("../app");
-const { stopGo } = require("../app");
-const { carImg } = require("../view/svgCar");
-const { getCar } = require("../api");
-const { updateCarApi } = require("../api");
-
 const update = <HTMLElement>document.querySelector(".update");
 let name: string[] = [];
 let classN;
@@ -35,7 +36,7 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
     name = [];
     const input = <HTMLInputElement>document.querySelector(".rename");
     classN = target.closest(".car-container");
-    const nameId = classN?.id.slice(2) as string; // id
+    const nameId = classN?.id.slice(2) as string;
     name.push(nameId);
     console.log(name);
     const carClassName = <HTMLInputElement>(

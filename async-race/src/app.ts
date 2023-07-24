@@ -100,7 +100,7 @@ export const stopGo = async (target: HTMLElement) => {
   target.classList.add("grey");
   isAnimation = false;
   const carStop = target.closest(".car-container");
-  const idNumStop = carStop?.id.slice(2) as string; // id
+  const idNumStop = carStop?.id.slice(2) as string;
   const carImgStop = <HTMLElement>document.querySelector(`.img-${+idNumStop}`);
   await engineStop(+idNumStop);
   carImgStop.style.transform = "translateX(0vw)";

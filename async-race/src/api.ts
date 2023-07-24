@@ -111,10 +111,16 @@ export const getWinners = async () => {
   const data = await response.json();
   h1Win.innerHTML = `Winners (${data.length})`;
   data.forEach((item: string, index: number) => {
+    const par = <HTMLElement>document.querySelector(`.par-${data[index].id}`);
+    const parColor = par.textContent;
+    const carClassName = <HTMLInputElement>(
+      document.querySelector(`.name-${data[index].id}`)
+    );
+    const carName = carClassName.innerHTML;
     showWinners(
       data[index].id,
-      "Tesla",
-      "#e6e6fa",
+      carName,
+      parColor,
       data[index].wins,
       data[index].time,
     );
