@@ -1,4 +1,3 @@
-const { renderCar } = require("./view/svgCar");
 const { showWinners } = require("./view/winners");
 
 enum Endpoint {
@@ -33,6 +32,7 @@ type CarForApi = {
 export const getCars = async () => {
   const response = await fetch(`${baseUrl}${path.garage}`);
   const data = await response.json();
+  console.log(data);
 };
 
 export const createCarApi = async (car: CarForApi) => {

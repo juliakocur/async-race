@@ -23,12 +23,6 @@ export function createHTML() {
   mainGenerate.classList.add("main-generate");
   mainCreator.appendChild(mainGenerate);
 
-  const wait = document.createElement("div");
-  wait.classList.add("wait");
-  wait.classList.add("none");
-  wait.innerHTML = "Waiting, please ...";
-  mainGenerate.appendChild(wait);
-
   const mainGarage = document.createElement("section");
   mainGarage.classList.add("main-garage");
   main.appendChild(mainGarage);

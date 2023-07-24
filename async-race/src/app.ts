@@ -196,8 +196,6 @@ prev.addEventListener("click", function showPrev() {
 });
 
 function createOneHandredCars() {
-  const wait = <HTMLElement>document.querySelector(".wait");
-  wait.classList.remove("none");
   for (let i = 1; i <= 100; i += 1) {
     const carApi = {
       name: createCarName(),
@@ -210,9 +208,6 @@ function createOneHandredCars() {
   container.innerHTML = "";
   h3.innerHTML = `Page #${pageNum}`;
   getCarsForNext(pageNum, 7);
-  setTimeout(function remove() {
-    wait.classList.add("none");
-  }, 10000);
 }
 
 generate.addEventListener("click", function create100() {

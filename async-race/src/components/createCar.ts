@@ -1,5 +1,3 @@
-const { renderCar } = require("../view/svgCar");
-
 export function getRandomColor() {
   const letter = "0123456789ABCDEF";
   let color = "#";
