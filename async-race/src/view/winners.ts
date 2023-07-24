@@ -13,6 +13,7 @@ export function showWinners(
 
   const winner = document.createElement("div");
   winner.classList.add("winner");
+  winner.id = `win-${id}`;
   winnerContainer.appendChild(winner);
 
   const carId = document.createElement("div");

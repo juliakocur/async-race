@@ -139,6 +139,8 @@ mainGarage.addEventListener("click", function changeNameAndColor(e: Event) {
   if (target.className === "remove") {
     const car = target.closest(".car-container");
     const nameRemId = car?.id.slice(2) as string;
+    const winner = document.getElementById(`win-${+nameRemId}`);
+    winner?.remove();
     car?.remove();
     count -= 1;
     h1.innerHTML = `Garage (${count})`;
